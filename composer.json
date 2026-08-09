@@ -1,0 +1,39 @@
+{
+	"name": "wapplersystems/form-mautic",
+	"type": "typo3-cms-extension",
+	"description": "Form finishers and validators for Mautic contact sign-up and unsubscribe",
+	"version": "14.0.0",
+	"license": "GPL-2.0-or-later",
+	"keywords": [
+		"TYPO3",
+		"typo3-extension",
+		"mautic",
+		"form",
+		"finisher",
+		"validator",
+		"newsletter"
+	],
+	"authors": [
+		{
+			"name": "Sven Wappler",
+			"email": "info@wappler.systems",
+			"role": "Developer"
+		}
+	],
+	"require": {
+		"php": "^8.2",
+		"typo3/cms-core": "^14",
+		"typo3/cms-form": "^14",
+		"wapplersystems/oauth-service": "*"
+	},
+	"autoload": {
+		"psr-4": {
+			"WapplerSystems\\FormMautic\\": "Classes"
+		}
+	},
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "form_mautic"
+		}
+	}
+}

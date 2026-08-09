@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" product-name="form_mautic">
+		<header/>
+		<body>
+			<trans-unit id="finisher.signIn.header">
+				<source>Mautic - Sign in</source>
+			</trans-unit>
+			<trans-unit id="finisher.signIn.emailField">
+				<source>Email form field</source>
+			</trans-unit>
+			<trans-unit id="finisher.signIn.segmentId">
+				<source>Segment ID</source>
+			</trans-unit>
+			<trans-unit id="finisher.signIn.fieldMapping">
+				<source>Field mapping (JSON)</source>
+			</trans-unit>
+			<trans-unit id="finisher.signOut.header">
+				<source>Mautic - Sign out</source>
+			</trans-unit>
+			<trans-unit id="finisher.signOut.emailField">
+				<source>Email form field</source>
+			</trans-unit>
+			<trans-unit id="finisher.signOut.segmentId">
+				<source>Segment ID</source>
+			</trans-unit>
+			<trans-unit id="validator.mauticEmail.dnc">
+				<source>This e-mail address has previously unsubscribed and cannot be used here.</source>
+			</trans-unit>
+			<trans-unit id="validator.mauticConnection.unavailable">
+				<source>This form is temporarily unavailable. Please try again later.</source>
+			</trans-unit>
+			<trans-unit id="validator.mauticRequiredFields.missing">
+				<source>This field is required for the newsletter sign-up.</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

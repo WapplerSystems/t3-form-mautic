@@ -1,0 +1,161 @@
+TYPO3:
+  CMS:
+    Form:
+      prototypes:
+        standard:
+          formEditor:
+            translationFiles:
+              3000: 'EXT:form_mautic/Resources/Private/Language/form.xlf'
+          formElementsDefinition:
+            Form:
+              renderingOptions:
+                translation:
+                  translationFiles:
+                    3000: 'EXT:form_mautic/Resources/Private/Language/form.xlf'
+              formEditor:
+                editors:
+                  900:
+                    selectOptions:
+                      3001:
+                        value: MauticSignIn
+                        label: 'Mautic - Sign in'
+                      3002:
+                        value: MauticSignOut
+                        label: 'Mautic - Sign out'
+                propertyCollections:
+                  finishers:
+                    3001:
+                      identifier: MauticSignIn
+                      editors:
+                        100:
+                          label: 'Mautic - Sign in'
+                          identifier: header
+                          templateName: Inspector-CollectionElementHeaderEditor
+                        200:
+                          identifier: emailField
+                          templateName: Inspector-TextEditor
+                          label: 'Email form field'
+                          placeholder: email
+                          propertyPath: options.emailField
+                        300:
+                          identifier: segmentId
+                          templateName: Inspector-TextEditor
+                          label: 'Segment ID'
+                          placeholder: ''
+                          propertyPath: options.segmentId
+                        400:
+                          identifier: fieldMapping
+                          templateName: Inspector-TextEditor
+                          label: 'Field mapping (JSON)'
+                          placeholder: '{"firstName":"firstname","phone":"phone"}'
+                          propertyPath: options.fieldMapping
+                        9999:
+                          identifier: removeButton
+                          templateName: Inspector-RemoveElementEditor
+                    3002:
+                      identifier: MauticSignOut
+                      editors:
+                        100:
+                          label: 'Mautic - Sign out'
+                          identifier: header
+                          templateName: Inspector-CollectionElementHeaderEditor
+                        200:
+                          identifier: emailField
+                          templateName: Inspector-TextEditor
+                          label: 'Email form field'
+                          placeholder: email
+                          propertyPath: options.emailField
+                        300:
+                          identifier: segmentId
+                          templateName: Inspector-TextEditor
+                          label: 'Segment ID'
+                          placeholder: ''
+                          propertyPath: options.segmentId
+                        9999:
+                          identifier: removeButton
+                          templateName: Inspector-RemoveElementEditor
+            Email:
+              formEditor:
+                editors:
+                  900:
+                    selectOptions:
+                      200:
+                        value: MauticEmailValidator
+                        label: 'Mautic - Email DNC check'
+                      210:
+                        value: MauticConnectionValidator
+                        label: 'Mautic - Connection check'
+                      220:
+                        value: MauticRequiredFieldsValidator
+                        label: 'Mautic - Required field'
+                propertyCollections:
+                  validators:
+                    200:
+                      identifier: MauticEmailValidator
+                      editors:
+                        100:
+                          identifier: header
+                          templateName: Inspector-CollectionElementHeaderEditor
+                          label: 'Mautic - Email DNC check'
+                        9999:
+                          identifier: removeButton
+                          templateName: Inspector-RemoveElementEditor
+                    210:
+                      identifier: MauticConnectionValidator
+                      editors:
+                        100:
+                          identifier: header
+                          templateName: Inspector-CollectionElementHeaderEditor
+                          label: 'Mautic - Connection check'
+                        9999:
+                          identifier: removeButton
+                          templateName: Inspector-RemoveElementEditor
+                    220:
+                      identifier: MauticRequiredFieldsValidator
+                      editors:
+                        100:
+                          identifier: header
+                          templateName: Inspector-CollectionElementHeaderEditor
+                          label: 'Mautic - Required field'
+                        9999:
+                          identifier: removeButton
+                          templateName: Inspector-RemoveElementEditor
+          finishersDefinition:
+            MauticSignIn:
+              implementationClassName: WapplerSystems\FormMautic\Finishers\MauticSignInFormFinisher
+              formEditor:
+                iconIdentifier: form-finisher
+                label: 'Mautic - Sign in'
+                predefinedDefaults:
+                  options:
+                    emailField: email
+                    segmentId: ''
+                    fieldMapping: ''
+            MauticSignOut:
+              implementationClassName: WapplerSystems\FormMautic\Finishers\MauticSignOutFormFinisher
+              formEditor:
+                iconIdentifier: form-finisher
+                label: 'Mautic - Sign out'
+                predefinedDefaults:
+                  options:
+                    emailField: email
+                    segmentId: ''
+          validatorsDefinition:
+            MauticEmailValidator:
+              implementationClassName: WapplerSystems\FormMautic\Validators\MauticEmailValidator
+              formEditor:
+                iconIdentifier: form-validator
+                label: 'Mautic - Email DNC check'
+            MauticConnectionValidator:
+              implementationClassName: WapplerSystems\FormMautic\Validators\MauticConnectionValidator
+              formEditor:
+                iconIdentifier: form-validator
+                label: 'Mautic - Connection check'
+            MauticRequiredFieldsValidator:
+              implementationClassName: WapplerSystems\FormMautic\Validators\MauticRequiredFieldsValidator
+              formEditor:
+                iconIdentifier: form-validator
+                label: 'Mautic - Required field'
+      persistenceManager:
+        allowedExtensionPaths:
+          3000: EXT:form_mautic/Resources/Private/Forms/

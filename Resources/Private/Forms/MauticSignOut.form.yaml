@@ -1,0 +1,43 @@
+
+renderingOptions:
+  submitButtonLabel: Abmelden
+identifier: mauticsignout
+label: 'Mautic Sign-Out'
+type: Form
+prototypeName: standard
+finishers:
+  -
+    identifier: MauticSignOut
+    options:
+      emailField: email
+      segmentId: ''
+  -
+    identifier: Confirmation
+    options:
+      message: 'Sie wurden vom Newsletter abgemeldet.'
+      contentElementUid: ''
+renderables:
+  -
+    renderingOptions:
+      previousButtonLabel: 'previous Page'
+      nextButtonLabel: 'next Page'
+    identifier: page-1
+    label: Newsletter-Abmeldung
+    type: Page
+    renderables:
+      -
+        defaultValue: ''
+        identifier: email
+        label: E-Mail
+        type: Email
+        properties:
+          fluidAdditionalAttributes:
+            placeholder: E-Mail-Adresse
+            required: required
+        validators:
+          -
+            identifier: NotEmpty
+          -
+            identifier: EmailAddress
+          -
+            identifier: MauticConnectionValidator

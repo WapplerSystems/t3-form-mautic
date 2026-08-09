@@ -1,0 +1,66 @@
+
+identifier: mauticsignin
+type: Form
+label: 'Mautic Sign-In'
+prototypeName: standard
+renderingOptions:
+  submitButtonLabel: Anmelden
+finishers:
+  -
+    options:
+      segmentId: ''
+      emailField: email
+      fieldMapping: ''
+    identifier: MauticSignIn
+  -
+    options:
+      message: 'Vielen Dank für Ihre Anmeldung.'
+      contentElementUid: ''
+    identifier: Confirmation
+renderables:
+  -
+    renderingOptions:
+      previousButtonLabel: 'previous Page'
+      nextButtonLabel: 'next Page'
+    identifier: page-1
+    label: Newsletter-Anmeldung
+    type: Page
+    renderables:
+      -
+        defaultValue: ''
+        identifier: firstName
+        label: First Name
+        type: Text
+        properties:
+          fluidAdditionalAttributes:
+            placeholder: First Name
+        validators:
+          -
+            identifier: MauticRequiredFieldsValidator
+      -
+        defaultValue: ''
+        identifier: lastName
+        label: Last Name
+        type: Text
+        properties:
+          fluidAdditionalAttributes:
+            placeholder: Last Name
+      -
+        defaultValue: ''
+        identifier: email
+        label: E-Mail
+        type: Email
+        properties:
+          fluidAdditionalAttributes:
+            placeholder: E-Mail-Adresse
+            required: required
+        validators:
+          -
+            identifier: NotEmpty
+          -
+            identifier: EmailAddress
+          -
+            identifier: MauticEmailValidator
+          -
+            identifier: MauticConnectionValidator
+variants: {  }

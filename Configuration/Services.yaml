@@ -1,0 +1,27 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  WapplerSystems\FormMautic\:
+    resource: '../Classes/*'
+
+  WapplerSystems\FormMautic\Finishers\MauticSignInFormFinisher:
+    public: true
+
+  WapplerSystems\FormMautic\Finishers\MauticSignOutFormFinisher:
+    public: true
+
+  WapplerSystems\FormMautic\Validators\MauticEmailValidator:
+    public: true
+
+  WapplerSystems\FormMautic\Validators\MauticConnectionValidator:
+    public: true
+
+  WapplerSystems\FormMautic\Validators\MauticRequiredFieldsValidator:
+    public: true
+
+  WapplerSystems\FormMautic\Mautic\Api:
+    public: true
+    shared: true
