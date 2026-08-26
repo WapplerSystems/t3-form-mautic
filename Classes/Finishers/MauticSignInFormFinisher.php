@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace WapplerSystems\FormMautic\Finishers;
 
+use TYPO3\CMS\Core\Country\CountryProvider;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Form\Domain\Finishers\AbstractFinisher;
 use WapplerSystems\FormMautic\Mautic\Api;
 
@@ -39,14 +41,12 @@ class MauticSignInFormFinisher extends AbstractFinisher
 
         $payload = ['email' => $email];
 
-        $fieldMapping = $this->parseOption('fieldMapping');
-        if (is_array($fieldMapping)) {
-            foreach ($fieldMapping as $formField => $mauticField) {
-                $value = $formRuntime[(string)$formField] ?? null;
-                if ($value !== null && $value !== '') {
-                    $payload[(string)$mauticField] = $value;
-                }
+        foreach ($this->getFieldMapping() as $formField => $mauticField) {
+            $value = $formRuntime[$formField] ?? null;
+            if ($value === null || $value === '') {
+                continue;
             }
+            $payload[$mauticField] = $this->normalizeValue($mauticField, $value);
         }
 
         if (!isset($payload['firstname']) && !isset($payload['lastname'])) {
@@ -89,5 +89,57 @@ class MauticSignInFormFinisher extends AbstractFinisher
         }
 
         return null;
+    }
+
+    /**
+     * The form editor stores the mapping as a JSON string, a YAML form definition
+     * can provide it as a plain map. Accept both.
+     *
+     * @return array<string, string>
+     */
+    private function getFieldMapping(): array
+    {
+        $fieldMapping = $this->parseOption('fieldMapping');
+
+        if (is_string($fieldMapping)) {
+            $fieldMapping = trim($fieldMapping);
+            if ($fieldMapping === '') {
+                return [];
+            }
+            $decoded = json_decode($fieldMapping, true);
+            if (!is_array($decoded)) {
+                $this->logger?->warning('MauticSignIn: fieldMapping is not valid JSON, ignoring', [
+                    'fieldMapping' => $fieldMapping,
+                ]);
+                return [];
+            }
+            $fieldMapping = $decoded;
+        }
+
+        if (!is_array($fieldMapping)) {
+            return [];
+        }
+
+        $result = [];
+        foreach ($fieldMapping as $formField => $mauticField) {
+            $result[(string)$formField] = (string)$mauticField;
+        }
+        return $result;
+    }
+
+    /**
+     * Mautic's core "country" field is a select list of English country names,
+     * while EXT:form's CountrySelect submits an alpha-2 ISO code. Translate it,
+     * otherwise Mautic silently drops the value.
+     */
+    private function normalizeValue(string $mauticField, mixed $value): mixed
+    {
+        if ($mauticField !== 'country' || !is_string($value) || strlen($value) !== 2) {
+            return $value;
+        }
+
+        $country = GeneralUtility::makeInstance(CountryProvider::class)->getByAlpha2IsoCode(strtoupper($value));
+
+        return $country?->getName() ?? $value;
     }
 }

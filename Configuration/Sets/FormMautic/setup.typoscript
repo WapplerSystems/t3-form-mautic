@@ -1,0 +1,7 @@
+plugin.tx_form {
+  settings {
+    yamlConfigurations {
+      5410 = EXT:form_mautic/Configuration/Yaml/FormSetup.yaml
+    }
+  }
+}
