@@ -25,3 +25,20 @@ services:
   WapplerSystems\FormMautic\Mautic\Api:
     public: true
     shared: true
+
+  # Registers "mautic" with wapplersystems/oauth-service. Mautic is self-hosted,
+  # so the host differs per installation: the endpoints are built from the
+  # client's own "baseUrl" metadata entry plus these paths, which is why
+  # authorizationUrl/tokenUrl stay empty here.
+  form_mautic.provider_definition:
+    class: WapplerSystems\OauthService\Provider\ProviderDefinition
+    autowire: false
+    arguments:
+      $identifier: 'mautic'
+      $title: 'Mautic'
+      $type: 'generic_oauth2'
+      $authorizationPath: '/oauth/v2/authorize'
+      $tokenPath: '/oauth/v2/token'
+      $setupGuideUrl: 'https://docs.mautic.org/en/5.x/rest_api/authorization.html'
+    tags:
+      - 'oauth_service.provider_definition'
