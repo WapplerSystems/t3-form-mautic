@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+	<file source-language="en" target-language="pt" datatype="plaintext" original="messages" product-name="form_mautic">
+		<header/>
+		<body>
+			<trans-unit id="ask.title">
+				<source>Confirm your newsletter subscription</source>
+				<target>Confirme a sua inscrição na newsletter</target>
+			</trans-unit>
+			<trans-unit id="ask.text">
+				<source>Please click the button to confirm that you would like to receive our newsletter.</source>
+				<target>Clique no botão para confirmar que pretende receber a nossa newsletter.</target>
+			</trans-unit>
+			<trans-unit id="ask.button">
+				<source>Confirm subscription</source>
+				<target>Confirmar inscrição</target>
+			</trans-unit>
+			<trans-unit id="confirmed.title">
+				<source>Thank you!</source>
+				<target>Muito obrigado!</target>
+			</trans-unit>
+			<trans-unit id="confirmed.text">
+				<source>Your subscription is confirmed. Our newsletter is published about once a month.</source>
+				<target>A sua inscrição está confirmada. A nossa newsletter é publicada cerca de uma vez por mês.</target>
+			</trans-unit>
+			<trans-unit id="invalid.title">
+				<source>Link invalid</source>
+				<target>Link inválido</target>
+			</trans-unit>
+			<trans-unit id="invalid.text">
+				<source>This confirmation link is invalid, has already been used or has expired. Please sign up for the newsletter again.</source>
+				<target>Este link de confirmação é inválido, já foi utilizado ou expirou. Inscreva-se novamente na newsletter.</target>
+			</trans-unit>
+			<trans-unit id="error.title">
+				<source>Something went wrong</source>
+				<target>Ocorreu um erro</target>
+			</trans-unit>
+			<trans-unit id="error.text">
+				<source>Your subscription could not be confirmed right now. Please try the link again in a few minutes.</source>
+				<target>Não foi possível confirmar a sua inscrição neste momento. Tente novamente o link dentro de alguns minutos.</target>
+			</trans-unit>
+			<trans-unit id="home">
+				<source>Go to homepage</source>
+				<target>Ir para a página inicial</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

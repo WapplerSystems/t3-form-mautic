@@ -1,0 +1,20 @@
+categories:
+  formMautic:
+    label: 'Form Mautic'
+  formMautic.doubleOptIn:
+    label: 'Double opt-in'
+    parent: formMautic
+
+settings:
+  formMautic.doubleOptIn.confirmedPageUid:
+    label: 'Page shown after a confirmed subscription'
+    description: 'Optional. Without a page the confirm screen shows its own thank-you message.'
+    category: formMautic.doubleOptIn
+    type: int
+    default: 0
+  formMautic.doubleOptIn.templateRootPath:
+    label: 'Template root path for the confirm screen'
+    description: 'Optional, e.g. EXT:my_sitepackage/Resources/Private/Templates/FormMautic/ — must contain DoubleOptIn/Confirm.html'
+    category: formMautic.doubleOptIn
+    type: string
+    default: ''

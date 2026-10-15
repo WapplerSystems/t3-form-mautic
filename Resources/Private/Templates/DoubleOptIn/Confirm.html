@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="{language.locale.languageCode}">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="robots" content="noindex, nofollow">
+	<title>{labels.title} – {siteTitle}</title>
+	<f:comment>Standalone page outside the page tree; override via site setting formMautic.doubleOptIn.templateRootPath.</f:comment>
+	<link rel="stylesheet" href="{f:uri.resource(path: 'EXT:form_mautic/Resources/Public/Css/DoubleOptIn.css')}">
+</head>
+<body>
+<main>
+	<p class="site">{siteTitle}</p>
+	<h1>{labels.title}</h1>
+	<p>{labels.text}</p>
+	<f:if condition="{state} == 'ask'">
+		<f:then>
+			<form method="post" action="{formAction}">
+				<button type="submit">{labels.button}</button>
+			</form>
+		</f:then>
+		<f:else>
+			<a class="link" href="{homeUrl}">{labels.home} →</a>
+		</f:else>
+	</f:if>
+</main>
+</body>
+</html>

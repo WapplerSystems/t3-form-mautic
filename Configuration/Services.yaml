@@ -13,6 +13,9 @@ services:
   WapplerSystems\FormMautic\Finishers\MauticSignOutFormFinisher:
     public: true
 
+  WapplerSystems\FormMautic\Finishers\MauticDoubleOptInFormFinisher:
+    public: true
+
   WapplerSystems\FormMautic\Validators\MauticEmailValidator:
     public: true
 
@@ -20,6 +23,9 @@ services:
     public: true
 
   WapplerSystems\FormMautic\Validators\MauticRequiredFieldsValidator:
+    public: true
+
+  WapplerSystems\FormMautic\Validators\SubmissionRateLimitValidator:
     public: true
 
   WapplerSystems\FormMautic\Mautic\Api:

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+	<file source-language="en" target-language="nl" datatype="plaintext" original="messages" product-name="form_mautic">
+		<header/>
+		<body>
+			<trans-unit id="ask.title">
+				<source>Confirm your newsletter subscription</source>
+				<target>Bevestig uw aanmelding voor de nieuwsbrief</target>
+			</trans-unit>
+			<trans-unit id="ask.text">
+				<source>Please click the button to confirm that you would like to receive our newsletter.</source>
+				<target>Klik op de knop om te bevestigen dat u onze nieuwsbrief wilt ontvangen.</target>
+			</trans-unit>
+			<trans-unit id="ask.button">
+				<source>Confirm subscription</source>
+				<target>Aanmelding bevestigen</target>
+			</trans-unit>
+			<trans-unit id="confirmed.title">
+				<source>Thank you!</source>
+				<target>Hartelijk dank!</target>
+			</trans-unit>
+			<trans-unit id="confirmed.text">
+				<source>Your subscription is confirmed. Our newsletter is published about once a month.</source>
+				<target>Uw aanmelding is bevestigd. Onze nieuwsbrief verschijnt ongeveer één keer per maand.</target>
+			</trans-unit>
+			<trans-unit id="invalid.title">
+				<source>Link invalid</source>
+				<target>Link ongeldig</target>
+			</trans-unit>
+			<trans-unit id="invalid.text">
+				<source>This confirmation link is invalid, has already been used or has expired. Please sign up for the newsletter again.</source>
+				<target>Deze bevestigingslink is ongeldig, al gebruikt of verlopen. Meld u opnieuw aan voor de nieuwsbrief.</target>
+			</trans-unit>
+			<trans-unit id="error.title">
+				<source>Something went wrong</source>
+				<target>Er is iets misgegaan</target>
+			</trans-unit>
+			<trans-unit id="error.text">
+				<source>Your subscription could not be confirmed right now. Please try the link again in a few minutes.</source>
+				<target>Uw aanmelding kon nu niet worden bevestigd. Probeer de link over een paar minuten opnieuw.</target>
+			</trans-unit>
+			<trans-unit id="home">
+				<source>Go to homepage</source>
+				<target>Naar de homepage</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

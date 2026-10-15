@@ -131,6 +131,18 @@ TYPO3:
                     emailField: email
                     segmentId: ''
                     fieldMapping: ''
+            MauticDoubleOptIn:
+              implementationClassName: WapplerSystems\FormMautic\Finishers\MauticDoubleOptInFormFinisher
+              formEditor:
+                iconIdentifier: form-finisher
+                label: 'Mautic - Double opt-in'
+                predefinedDefaults:
+                  options:
+                    emailField: email
+                    languageField: ''
+                    segmentId: ''
+                    fieldMapping: ''
+                    confirmationEmails: {  }
             MauticSignOut:
               implementationClassName: WapplerSystems\FormMautic\Finishers\MauticSignOutFormFinisher
               formEditor:
@@ -151,6 +163,16 @@ TYPO3:
               formEditor:
                 iconIdentifier: form-validator
                 label: 'Mautic - Connection check'
+            SubmissionRateLimit:
+              implementationClassName: WapplerSystems\FormMautic\Validators\SubmissionRateLimitValidator
+              formEditor:
+                iconIdentifier: form-validator
+                label: 'Submission rate limit per IP'
+                predefinedDefaults:
+                  options:
+                    id: form-submission
+                    limit: 5
+                    interval: '1 hour'
             MauticRequiredFieldsValidator:
               implementationClassName: WapplerSystems\FormMautic\Validators\MauticRequiredFieldsValidator
               formEditor:

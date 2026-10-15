@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+	<file source-language="en" target-language="fr" datatype="plaintext" original="messages" product-name="form_mautic">
+		<header/>
+		<body>
+			<trans-unit id="ask.title">
+				<source>Confirm your newsletter subscription</source>
+				<target>Confirmez votre inscription à la newsletter</target>
+			</trans-unit>
+			<trans-unit id="ask.text">
+				<source>Please click the button to confirm that you would like to receive our newsletter.</source>
+				<target>Veuillez cliquer sur le bouton pour confirmer que vous souhaitez recevoir notre newsletter.</target>
+			</trans-unit>
+			<trans-unit id="ask.button">
+				<source>Confirm subscription</source>
+				<target>Confirmer l'inscription</target>
+			</trans-unit>
+			<trans-unit id="confirmed.title">
+				<source>Thank you!</source>
+				<target>Merci !</target>
+			</trans-unit>
+			<trans-unit id="confirmed.text">
+				<source>Your subscription is confirmed. Our newsletter is published about once a month.</source>
+				<target>Votre inscription est confirmée. Notre newsletter paraît environ une fois par mois.</target>
+			</trans-unit>
+			<trans-unit id="invalid.title">
+				<source>Link invalid</source>
+				<target>Lien non valide</target>
+			</trans-unit>
+			<trans-unit id="invalid.text">
+				<source>This confirmation link is invalid, has already been used or has expired. Please sign up for the newsletter again.</source>
+				<target>Ce lien de confirmation n'est pas valide, a déjà été utilisé ou a expiré. Veuillez vous inscrire à nouveau à la newsletter.</target>
+			</trans-unit>
+			<trans-unit id="error.title">
+				<source>Something went wrong</source>
+				<target>Une erreur s'est produite</target>
+			</trans-unit>
+			<trans-unit id="error.text">
+				<source>Your subscription could not be confirmed right now. Please try the link again in a few minutes.</source>
+				<target>Votre inscription n'a pas pu être confirmée pour le moment. Veuillez réessayer le lien dans quelques minutes.</target>
+			</trans-unit>
+			<trans-unit id="home">
+				<source>Go to homepage</source>
+				<target>Vers la page d'accueil</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

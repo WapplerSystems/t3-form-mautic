@@ -19,6 +19,10 @@ class Api implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
+    /** Mautic\LeadBundle\Entity\DoNotContact reasons */
+    public const DNC_REASON_UNSUBSCRIBED = 1;
+    public const DNC_REASON_MANUAL = 3;
+
     private ?Client $client = null;
 
     private string $baseUrl = '';
@@ -163,6 +167,79 @@ class Api implements LoggerAwareInterface
         return reset($data['contacts']) ?: null;
     }
 
+    /**
+     * Like findContactByEmail(), but tells a failed request apart from "no such contact".
+     *
+     * @return array<string, mixed>|null|false the contact, null if there is none, false on error
+     */
+    public function lookupContactByEmail(string $email): array|null|false
+    {
+        $data = $this->request('GET', '/api/contacts?search=' . urlencode('email:' . $email) . '&limit=5');
+        if (!is_array($data) || !array_key_exists('total', $data)) {
+            return false;
+        }
+
+        foreach ($data['contacts'] ?? [] as $contact) {
+            if (is_array($contact) && strcasecmp((string)$this->getFieldValue($contact, 'email'), $email) === 0) {
+                return $contact;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * @return array<string, mixed>|null the contact array, or null if not found / error
+     */
+    public function getContact(int $contactId): ?array
+    {
+        $data = $this->request('GET', '/api/contacts/' . $contactId);
+        return is_array($data['contact'] ?? null) ? $data['contact'] : null;
+    }
+
+    /**
+     * Patch a contact. Tags given as "-name" are removed, plain names are added.
+     *
+     * @param array<string, mixed> $fields
+     * @return array<string, mixed>|null the updated contact, or null on failure
+     */
+    public function editContact(int $contactId, array $fields): ?array
+    {
+        $data = $this->request('PATCH', '/api/contacts/' . $contactId . '/edit', [
+            'json' => $fields,
+        ]);
+        return is_array($data['contact'] ?? null) ? $data['contact'] : null;
+    }
+
+    /**
+     * Send a template email to one contact. Mautic refuses contacts on the DNC list.
+     */
+    public function sendEmailToContact(int $emailId, int $contactId): bool
+    {
+        $data = $this->request('POST', '/api/emails/' . $emailId . '/contact/' . $contactId . '/send');
+        return !empty($data['success']);
+    }
+
+    /**
+     * @param array<string, mixed> $contact a full contact payload
+     */
+    public function hasTag(array $contact, string $tag): bool
+    {
+        foreach ($contact['tags'] ?? [] as $entry) {
+            if (is_array($entry) && strcasecmp((string)($entry['tag'] ?? ''), $tag) === 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @param array<string, mixed> $contact a full contact payload
+     */
+    public function getFieldValue(array $contact, string $alias): mixed
+    {
+        return $contact['fields']['all'][$alias] ?? null;
+    }
+
     public function addToSegment(int $contactId, int $segmentId): bool
     {
         $data = $this->request('POST', '/api/segments/' . $segmentId . '/contact/' . $contactId . '/add');
@@ -175,10 +252,14 @@ class Api implements LoggerAwareInterface
         return is_array($data);
     }
 
-    public function addToDoNotContact(int $contactId, string $channel = 'email'): bool
+    public function addToDoNotContact(int $contactId, string $channel = 'email', int $reason = self::DNC_REASON_UNSUBSCRIBED, string $comments = ''): bool
     {
+        $body = ['reason' => $reason];
+        if ($comments !== '') {
+            $body['comments'] = $comments;
+        }
         $data = $this->request('POST', '/api/contacts/' . $contactId . '/dnc/' . $channel . '/add', [
-            'json' => ['reason' => 1],
+            'json' => $body,
         ]);
         return is_array($data);
     }
