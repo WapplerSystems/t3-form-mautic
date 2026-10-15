@@ -2,7 +2,7 @@
 	"name": "wapplersystems/form-mautic",
 	"type": "typo3-cms-extension",
 	"description": "Form finishers and validators for Mautic contact sign-up and unsubscribe",
-	"version": "14.1.0",
+	"version": "14.1.1",
 	"license": "GPL-2.0-or-later",
 	"keywords": [
 		"TYPO3",
